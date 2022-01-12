@@ -1,7 +1,10 @@
 .App {
   text-align: center;
 }
-
+h3 {
+  font-family: "Zen Kurenaido";
+  font-size: 80px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import { CardList } from './components/card-list/card-list.component.jsx'
+import { SearchBox } from './components/search-box/search-box.component.jsx';
 import './App.css';
 
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      mascotas: []
+      mascotas: [],
+      searchField: ""
     }
   }
   // lifecicle methods
@@ -19,10 +21,22 @@ class App extends Component {
     });
   }
 
+  handleChange = e => {
+    this.setState({searchField: e.target.value })
+  }
   render() {
+    const { mascotas, searchField } = this.state;
+    const filterMascotas = mascotas.filter(mascota => 
+      mascota.name.toLowerCase().includes(searchField.toLocaleLowerCase())
+      )
     return (
       <div className="App">
-        <CardList mascotas={this.state.mascotas} />
+        <h3>Mi primera app </h3>
+        <SearchBox 
+          placeholder='search pets'
+          handleChange={this.handleChange}
+        />
+        <CardList mascotas={filterMascotas} />
       </div>
     );
   }
